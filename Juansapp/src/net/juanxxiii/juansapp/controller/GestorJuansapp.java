@@ -56,17 +56,17 @@ public class GestorJuansapp {
             Logger.getLogger(JPSqlite.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-//        create table user(
-//	nickname text,
-//	lastConnection datetime,
-//	isConnected Boolean,
-//	lastServer text);
-//	
-//        create table message(
-//	body text,
-//      userNick text,
-//	sendDate datetime,
-//	server text);
+        create table user(
+	nickname text,
+	lastConnection datetime,
+	isConnected Boolean,
+	lastServer text);
+	
+        create table message(
+	body text,
+      userNick text,
+	sendDate datetime,
+	server text);
     }
     
     public void sendMsgToBBDD(Message msg, String server) {
