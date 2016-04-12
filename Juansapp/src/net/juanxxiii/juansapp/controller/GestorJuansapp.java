@@ -39,11 +39,11 @@ public class GestorJuansapp {
             conexion = DriverManager.getConnection(dbDirectory);
             stmt = conexion.createStatement();
             
-            sql = "SELECT * FROM JUGADORES";
+            sql = "SELECT * FROM MESSAGES";
             rs = stmt.executeQuery(sql);
             
             while(rs.next()) {
-                jtaLector.append(rs.getString("ID") + " | ");
+                jtaLector.append(rs.getString("Nick:") + " | ");
                 jtaLector.append(rs.getString("NOMBRE") + " | ");
                 jtaLector.append(rs.getString("EQUIPO") + "\n");
             }
@@ -55,45 +55,28 @@ public class GestorJuansapp {
         } catch (SQLException ex) {
             Logger.getLogger(JPSqlite.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        create table user(
-	nickname text,
-	lastConnection datetime,
-	isConnected Boolean,
-	lastServer text);
-	
-        create table message(
-	body text,
-      userNick text,
-	sendDate datetime,
-	server text);
     }
     
-    public void sendMsgToBBDD(Message msg, String server) {
+    public void sendMsgToBBDD(Message msg) {
         try {
             Connection conexion = null;
             Statement stmt = null;
             String sql = null;
             
             Class.forName("org.sqlite.JDBC");
-            conexion = DriverManager.getConnection(server);
+            conexion = DriverManager.getConnection(msg.getServer());
             stmt = conexion.createStatement();
             
-            sql = 
+            sql = "INSERT INTO MESSAGES VALUES('" + msg.getBody() + "', '" + msg.getUserNick() + "', '" + msg.getSendDate() + "', '" + msg.getServer() + "')";
             
-            sql = "insert into jugadores values(" + jtfId.getText() + ", '" 
-                                                   + jtfNombre.getText() + "', '" 
-                                                   + jtfApellido1.getText()  + "', '" 
-                                                   + jtfApellido2.getText() + "', '" 
-                                                   + jtfEquipo.getText() + "')";
             stmt.executeUpdate(sql);
             
             stmt.close();
             conexion.close();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(JPSqlite.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GestorJuansapp.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(JPSqlite.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GestorJuansapp.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
