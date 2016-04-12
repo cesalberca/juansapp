@@ -24,4 +24,22 @@ public class Message {
         this.sendDate = Date.from(Instant.MIN);
         this.userNick = userNick;
     }
+
+    public String getBody() {
+        return body;
+    }
+
+    public String getUserNick() {
+        return userNick;
+    }
+
+    public Date getSendDate() {
+        return sendDate;
+    }
+
+    public String getServer() {
+        return server;
+    }
+    
+    
 }
