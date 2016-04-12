@@ -32,6 +32,7 @@ public class JFJuansapp extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("JuansApp Plus");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
