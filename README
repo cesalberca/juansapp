@@ -1,0 +1,13 @@
+create table user(
+	nickname text,
+	lastConnection datetime,
+	isConnected Boolean,
+	lastServer text
+);
+	
+create table message(
+	body text,
+    userNick text,
+	sendDate datetime,
+	server text
+);
