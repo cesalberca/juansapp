@@ -22,5 +22,14 @@ public class Message {
         this.server = server;
         this.sendDate = Date.from(Instant.MIN);
     }
-    
+    create table user(
+	nickname text,
+	lastConnection datetime,
+	isConnected Boolean,
+	lastServer text);
+	
+create table message(
+	body text,
+	sendDate datetime,
+	server text);
 }
