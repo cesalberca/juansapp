@@ -16,6 +16,10 @@ public class JFJuansapp extends javax.swing.JFrame {
      */
     public JFJuansapp() {
         initComponents();
+        JPJuansapp jpj = new JPJuansapp();
+        this.setBounds(100, 100, 500, 500);
+        this.setVisible(true);
+        this.getContentPane().add(jpj);
     }
 
     /**
@@ -28,17 +32,6 @@ public class JFJuansapp extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
