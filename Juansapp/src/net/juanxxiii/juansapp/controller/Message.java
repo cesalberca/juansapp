@@ -14,22 +14,14 @@ import java.util.Date;
  */
 public class Message {
     private String body;
+    private String userNick;
     private Date sendDate;
     private String server;
 
-    public Message(String body, String server) {
+    public Message(String body, String server, String userNick) {
         this.body = body;
         this.server = server;
         this.sendDate = Date.from(Instant.MIN);
+        this.userNick = userNick;
     }
-    create table user(
-	nickname text,
-	lastConnection datetime,
-	isConnected Boolean,
-	lastServer text);
-	
-create table message(
-	body text,
-	sendDate datetime,
-	server text);
 }
