@@ -133,6 +133,7 @@ public class JPJuansapp extends javax.swing.JPanel {
         try {
             messages = gj.getDataBBDD(server);
             if (messages.size() != 0) {
+                jtaMessages.setText("");
                 for (Message message : messages) {
                     jtaMessages.append(message.toString());
                 }
@@ -157,8 +158,9 @@ public class JPJuansapp extends javax.swing.JPanel {
         String body = jtfMessage.getText();
         if (!body.isEmpty()) {
             try {
-                Message m = new Message(body, server, us.getNickname());
+                Message m = new Message(body, us.getNickname(), server);
                 gj.sendMsgToBBDD(m);
+                jtfMessage.setText("");
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(JPJuansapp.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
