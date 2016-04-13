@@ -14,10 +14,10 @@ public class Message {
     private String userNick;
     private String server;
 
-    public Message(String body, String server, String userNick) {
+    public Message(String body, String userNick, String server) {
         this.body = body;
-        this.server = server;
         this.userNick = userNick;
+        this.server = server;
     }
     
     public String getBody() {
@@ -34,7 +34,7 @@ public class Message {
 
     @Override
     public String toString() {
-        return userNick + ": " + body;
+        return userNick + ": " + body + "\n";
     }
     
     

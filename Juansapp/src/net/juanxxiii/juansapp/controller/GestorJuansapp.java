@@ -65,9 +65,10 @@ public class GestorJuansapp {
             Connection conexion = null;
             Statement stmt = null;
             String sql = null;
+            String con = "jdbc:sqlite:";
             
             Class.forName("org.sqlite.JDBC");
-            conexion = DriverManager.getConnection(msg.getServer());
+            conexion = DriverManager.getConnection(con + "Y:\\juansappdbreturn");
             stmt = conexion.createStatement();
             
             sql = "INSERT INTO MESSAGE VALUES('" + msg.getBody() + "', '" + msg.getUserNick() + "', '" + msg.getServer() + "')";
