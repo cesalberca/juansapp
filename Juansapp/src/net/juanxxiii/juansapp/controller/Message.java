@@ -24,6 +24,13 @@ public class Message {
         this.sendDate = Date.from(Instant.MIN);
         this.userNick = userNick;
     }
+    
+    public Message(String body, String server, String userNick, Date sendDate) {
+        this.body = body;
+        this.server = server;
+        this.userNick = userNick;
+        this.sendDate = sendDate;
+    }
 
     public String getBody() {
         return body;

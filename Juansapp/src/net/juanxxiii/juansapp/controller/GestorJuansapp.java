@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,16 +21,16 @@ import java.util.logging.Logger;
 public class GestorJuansapp {
     private User us;
     private Message ms;
+    private ArrayList<Message> messages;
     
     public void addUser() {
         
     }
     
-    public void createBBDD(String dbDirectory) {
-        // Botón de conectar
-        jtaLector.setText("");
+    public ArrayList<Message> getDataBBDD(String dbDirectory) {
+        messages = null;
         try {
-            // TODO add your handling code here:
+            messages = new ArrayList<>();
             Connection conexion = null;
             Statement stmt = null;
             String sql = null;
@@ -43,17 +44,16 @@ public class GestorJuansapp {
             rs = stmt.executeQuery(sql);
             
             while(rs.next()) {
-                jtaLector.append(rs.getString("Nick:") + " | ");
-                jtaLector.append(rs.getString("NOMBRE") + " | ");
-                jtaLector.append(rs.getString("EQUIPO") + "\n");
+                messages.add(new Message(rs.getString("body"), rs.getString("userNick"), rs.getString("server"), rs.getDate("sendDate")));
             }
             
             stmt.close();
             conexion.close();
+            return messages;
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(JPSqlite.class.getName()).log(Level.SEVERE, null, ex);
+            return messages;
         } catch (SQLException ex) {
-            Logger.getLogger(JPSqlite.class.getName()).log(Level.SEVERE, null, ex);
+            return messages;
         }
     }
     
