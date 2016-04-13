@@ -5,11 +5,6 @@
  */
 package net.juanxxiii.juansapp.controller;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.util.Date;
-
 /**
  *
  * @author Dam
@@ -21,6 +16,9 @@ public class Message {
     private String server;
 
     public Message(String body, String server, String userNick) {
+        
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String reportDate = df.format(sendDate.getTime());
         this.body = body;
         this.server = server;
         this.sendDate = Date.from(Instant.MIN);

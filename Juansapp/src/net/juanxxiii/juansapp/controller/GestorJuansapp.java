@@ -27,7 +27,7 @@ public class GestorJuansapp {
         
     }
     
-    public ArrayList<Message> getDataBBDD(String dbDirectory) {
+    public ArrayList<Message> getDataBBDD(String dbDirectory) throws ClassNotFoundException, SQLException {
         messages = null;
         try {
             messages = new ArrayList<>();
@@ -35,12 +35,13 @@ public class GestorJuansapp {
             Statement stmt = null;
             String sql = null;
             ResultSet rs = null;
+            String con = "jdbc:sqlite:";
             
             Class.forName("org.sqlite.JDBC");
-            conexion = DriverManager.getConnection(dbDirectory);
+            conexion = DriverManager.getConnection(con + dbDirectory);
             stmt = conexion.createStatement();
             
-            sql = "SELECT * FROM MESSAGES";
+            sql = "SELECT * FROM MESSAGE";
             rs = stmt.executeQuery(sql);
             
             while(rs.next()) {
@@ -51,13 +52,15 @@ public class GestorJuansapp {
             conexion.close();
             return messages;
         } catch (ClassNotFoundException ex) {
-            return messages;
+            ex.printStackTrace();
+            throw ex;
         } catch (SQLException ex) {
-            return messages;
+            ex.printStackTrace();
+            throw ex;
         }
     }
     
-    public void sendMsgToBBDD(Message msg) {
+    public void sendMsgToBBDD(Message msg) throws ClassNotFoundException, SQLException {
         try {
             Connection conexion = null;
             Statement stmt = null;
@@ -67,16 +70,18 @@ public class GestorJuansapp {
             conexion = DriverManager.getConnection(msg.getServer());
             stmt = conexion.createStatement();
             
-            sql = "INSERT INTO MESSAGES VALUES('" + msg.getBody() + "', '" + msg.getUserNick() + "', '" + msg.getSendDate() + "', '" + msg.getServer() + "')";
+            sql = "INSERT INTO MESSAGE VALUES('" + msg.getBody() + "', '" + msg.getUserNick() + "', '" + msg.getSendDate() + "', '" + msg.getServer() + "')";
             
             stmt.executeUpdate(sql);
             
             stmt.close();
             conexion.close();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(GestorJuansapp.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            throw ex;
         } catch (SQLException ex) {
-            Logger.getLogger(GestorJuansapp.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            throw ex;
         }
     }
     

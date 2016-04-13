@@ -17,6 +17,9 @@ import net.juanxxiii.juansapp.controller.User;
  */
 public class JPJuansapp extends javax.swing.JPanel {
     GestorJuansapp gj;
+    User us;
+    ArrayList<Message> messages;
+    private String server;
     
     /**
      * Creates new form JPJuansapp
@@ -127,6 +130,23 @@ public class JPJuansapp extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void refreshMessages() {
+        // Carga todos los mensajes y los mete en un array
+        try {
+            messages = gj.getDataBBDD(server);
+            if (messages.size() != 0) {
+                for (Message message : messages) {
+                    jtaMessages.append(message.toString());
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No hay mensajes para mostrar");
+            }
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Falla aqui");
+        }
+        
+    }
+    
     private void jtfNicknameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfNicknameFocusGained
         jtfNickname.setText("");
     }//GEN-LAST:event_jtfNicknameFocusGained
@@ -140,18 +160,25 @@ public class JPJuansapp extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfMessageFocusGained
 
     private void jbMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMessageActionPerformed
+        String body = jtfMessage.getText();
+        if (!body.isEmpty()) {
+            Message m = new Message(body, server, us.getNickname());
+            gj.sendMsgToBBDD(m);
+        }
         
-//        ArrayList<Message> messages = gj.getDataBBDD(dbDirectory);
+        this.refreshMessages();
     }//GEN-LAST:event_jbMessageActionPerformed
 
     private void jbLastConnectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLastConnectionActionPerformed
-        String server = jtfLastConnection.getText();
+        
+        server = jtfLastConnection.getText();
         String nick = jtfNickname.getText();
         
         if (!server.isEmpty() && !nick.isEmpty()) {
-            User us = new User(nick, server);
+            us = new User(nick, server);
             JOptionPane.showMessageDialog(null, "Bienvenido " + us.getNickname());
             jbMessage.setEnabled(true);
+            this.refreshMessages();
         } else {
             JOptionPane.showMessageDialog(null, "Completa los campos");
         }
