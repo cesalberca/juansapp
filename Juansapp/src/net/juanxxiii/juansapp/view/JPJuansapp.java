@@ -5,17 +5,26 @@
  */
 package net.juanxxiii.juansapp.view;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import net.juanxxiii.juansapp.controller.GestorJuansapp;
+import net.juanxxiii.juansapp.controller.Message;
+import net.juanxxiii.juansapp.controller.User;
+
 /**
  *
  * @author Dam
  */
 public class JPJuansapp extends javax.swing.JPanel {
-
+    GestorJuansapp gj;
+    
     /**
      * Creates new form JPJuansapp
      */
     public JPJuansapp() {
         initComponents();
+        gj = new GestorJuansapp();
+        jbMessage.setEnabled(false);
     }
 
     /**
@@ -30,7 +39,6 @@ public class JPJuansapp extends javax.swing.JPanel {
         jtfLastConnection = new javax.swing.JTextField();
         jbLastConnection = new javax.swing.JButton();
         jtfNickname = new javax.swing.JTextField();
-        jbNickname = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtaMessages = new javax.swing.JTextArea();
         jtfMessage = new javax.swing.JTextField();
@@ -48,6 +56,11 @@ public class JPJuansapp extends javax.swing.JPanel {
 
         jbLastConnection.setText("Conectar");
         jbLastConnection.setSelected(true);
+        jbLastConnection.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLastConnectionActionPerformed(evt);
+            }
+        });
 
         jtfNickname.setText("Escribe tu Nickname");
         jtfNickname.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -55,8 +68,6 @@ public class JPJuansapp extends javax.swing.JPanel {
                 jtfNicknameFocusGained(evt);
             }
         });
-
-        jbNickname.setText("Elegir");
 
         jtaMessages.setColumns(20);
         jtaMessages.setRows(5);
@@ -70,6 +81,11 @@ public class JPJuansapp extends javax.swing.JPanel {
         });
 
         jbMessage.setText("Enviar");
+        jbMessage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbMessageActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -88,24 +104,21 @@ public class JPJuansapp extends javax.swing.JPanel {
                             .addComponent(jtfLastConnection, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
                             .addComponent(jtfNickname))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jbNickname, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbLastConnection, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addComponent(jbLastConnection)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfLastConnection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbLastConnection))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jtfLastConnection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtfNickname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbLastConnection, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfNickname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbNickname))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfMessage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -126,12 +139,29 @@ public class JPJuansapp extends javax.swing.JPanel {
         jtfMessage.setText("");
     }//GEN-LAST:event_jtfMessageFocusGained
 
+    private void jbMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMessageActionPerformed
+        
+//        ArrayList<Message> messages = gj.getDataBBDD(dbDirectory);
+    }//GEN-LAST:event_jbMessageActionPerformed
+
+    private void jbLastConnectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLastConnectionActionPerformed
+        String server = jtfLastConnection.getText();
+        String nick = jtfNickname.getText();
+        
+        if (!server.isEmpty() && !nick.isEmpty()) {
+            User us = new User(nick, server);
+            JOptionPane.showMessageDialog(null, "Bienvenido " + us.getNickname());
+            jbMessage.setEnabled(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Completa los campos");
+        }
+    }//GEN-LAST:event_jbLastConnectionActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbLastConnection;
     private javax.swing.JButton jbMessage;
-    private javax.swing.JButton jbNickname;
     private javax.swing.JTextArea jtaMessages;
     private javax.swing.JTextField jtfLastConnection;
     private javax.swing.JTextField jtfMessage;

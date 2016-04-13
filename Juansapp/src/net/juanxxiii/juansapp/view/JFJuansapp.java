@@ -5,6 +5,8 @@
  */
 package net.juanxxiii.juansapp.view;
 
+import net.juanxxiii.juansapp.controller.GestorJuansapp;
+
 /**
  *
  * @author dam
@@ -19,7 +21,7 @@ public class JFJuansapp extends javax.swing.JFrame {
         JPJuansapp jpj = new JPJuansapp();
         this.setBounds(100, 100, 500, 500);
         this.setVisible(true);
-        this.getContentPane().add(jpj);
+        this.getContentPane().add(jpj);        
     }
 
     /**

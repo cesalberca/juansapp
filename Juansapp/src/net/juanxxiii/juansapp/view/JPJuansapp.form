@@ -39,10 +39,7 @@
                           <Component id="jtfNickname" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jbNickname" alignment="1" min="-2" pref="77" max="-2" attributes="0"/>
-                          <Component id="jbLastConnection" alignment="1" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jbLastConnection" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -53,17 +50,16 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jtfLastConnection" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jbLastConnection" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jtfLastConnection" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jtfNickname" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jbLastConnection" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jtfNickname" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jbNickname" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="356" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="362" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jtfMessage" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -88,6 +84,9 @@
         <Property name="text" type="java.lang.String" value="Conectar"/>
         <Property name="selected" type="boolean" value="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbLastConnectionActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jtfNickname">
       <Properties>
@@ -96,11 +95,6 @@
       <Events>
         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtfNicknameFocusGained"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="jbNickname">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Elegir"/>
-      </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
@@ -129,6 +123,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Enviar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbMessageActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -16,10 +16,11 @@ public class User {
     private String nickname;
     private Date lastConnection;
     private Boolean isConnected;
-    private String lastServer;
+    private String server;
 
-    public User(String nickname) {
+    public User(String nickname, String server) {
         this.nickname = nickname;
+        this.server = server;
     }
 
     public Date getLastConnection() {
@@ -38,12 +39,12 @@ public class User {
         this.isConnected = isConnected;
     }
 
-    public String getLastServer() {
-        return lastServer;
+    public String getServer() {
+        return server;
     }
 
-    public void setLastServer(String lastServer) {
-        this.lastServer = lastServer;
+    public void setServer(String server) {
+        this.server = server;
     }
 
     public String getNickname() {
