@@ -5,7 +5,10 @@
  */
 package net.juanxxiii.juansapp.view;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import net.juanxxiii.juansapp.controller.GestorJuansapp;
 import net.juanxxiii.juansapp.controller.Message;
@@ -162,8 +165,14 @@ public class JPJuansapp extends javax.swing.JPanel {
     private void jbMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMessageActionPerformed
         String body = jtfMessage.getText();
         if (!body.isEmpty()) {
-            Message m = new Message(body, server, us.getNickname());
-            gj.sendMsgToBBDD(m);
+            try {
+                Message m = new Message(body, server, us.getNickname());
+                gj.sendMsgToBBDD(m);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(JPJuansapp.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(JPJuansapp.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         this.refreshMessages();

@@ -45,7 +45,7 @@ public class GestorJuansapp {
             rs = stmt.executeQuery(sql);
             
             while(rs.next()) {
-                messages.add(new Message(rs.getString("body"), rs.getString("userNick"), rs.getString("server"), rs.getDate("sendDate")));
+                messages.add(new Message(rs.getString("body"), rs.getString("userNick"), rs.getString("server")));
             }
             
             stmt.close();
@@ -70,7 +70,7 @@ public class GestorJuansapp {
             conexion = DriverManager.getConnection(msg.getServer());
             stmt = conexion.createStatement();
             
-            sql = "INSERT INTO MESSAGE VALUES('" + msg.getBody() + "', '" + msg.getUserNick() + "', '" + msg.getSendDate() + "', '" + msg.getServer() + "')";
+            sql = "INSERT INTO MESSAGE VALUES('" + msg.getBody() + "', '" + msg.getUserNick() + "', '" + msg.getServer() + "')";
             
             stmt.executeUpdate(sql);
             
