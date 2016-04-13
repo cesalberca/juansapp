@@ -5,6 +5,8 @@
  */
 package net.juanxxiii.juansapp.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
 
@@ -47,6 +49,14 @@ public class Message {
     public String getServer() {
         return server;
     }
+
+    @Override
+    public String toString() {
+        DateFormat df = new SimpleDateFormat("HH:mm:ss");
+        String reportDate = df.format(sendDate.getTime());
+        return "(" + reportDate + ") " + userNick + ": " + body;
+    }
+    
     
     
 }
