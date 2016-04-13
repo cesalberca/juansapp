@@ -54,11 +54,6 @@ public class JPJuansapp extends javax.swing.JPanel {
         setNextFocusableComponent(jtaMessages);
 
         jtfLastConnection.setText("Escribe la Dirección de la BBDD");
-        jtfLastConnection.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jtfLastConnectionFocusGained(evt);
-            }
-        });
 
         jbLastConnection.setText("Conectar");
         jbLastConnection.setSelected(true);
@@ -153,10 +148,6 @@ public class JPJuansapp extends javax.swing.JPanel {
     private void jtfNicknameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfNicknameFocusGained
         jtfNickname.setText("");
     }//GEN-LAST:event_jtfNicknameFocusGained
-
-    private void jtfLastConnectionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfLastConnectionFocusGained
-        jtfLastConnection.setText("");
-    }//GEN-LAST:event_jtfLastConnectionFocusGained
 
     private void jtfMessageFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfMessageFocusGained
         jtfMessage.setText("");

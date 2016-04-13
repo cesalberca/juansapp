@@ -75,9 +75,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Escribe la Direcci&#xf3;n de la BBDD"/>
       </Properties>
-      <Events>
-        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtfLastConnectionFocusGained"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbLastConnection">
       <Properties>
